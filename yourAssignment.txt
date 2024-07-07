@@ -1,0 +1,114 @@
+Requirements:
+Part 1:
+
+1. Frontend 
+  a. Create each visualization using HTML, Javascript, and css (and chatGPT for the html and css)
+  b. Each of these visualizations should be modular, nodes should be represented with circles with text in the center, nodes should be connected using lines. Use Angular or react with a node project in order to create these visualizations (this will likely involve running the command create-react-app or the angular equivalent)
+  c. For the Tree:
+    The tree diagram should look like literally every diagram you see ever, meaning that the left and right are evenly spaced
+  d. For the graph
+    Each node in the graph should be EVENLY SPACED from the center. This means that if there are 2, they should be on opposite sides, if there are 3, they should be in a triangle shape around the center, if there are four, they should be in a square (or diamond) around the center. Come up with your own way to avoid overlap (this can also be done by chatGPT lol)
+
+2. Backend 
+  a. Create your backend using the python "flask" library. This will allow you to set up an api that your frontend will interact with. You should create a few endpoints in this flask application.
+    1. POST /tree
+      a. payload example: {
+          id: 1
+          data: "node 1"
+          left: {
+            id: 2
+            data: "node 2"
+            left: None
+            right: None
+          }
+          right: {
+            id: 3
+            data: "node 3"
+            left: {
+              id: 4
+              data: "node 4"
+              left: None
+              right: None
+            }
+            right: None
+          }
+        }
+    2. POST /linkedList
+      a. payload example: [
+          {
+            id: 1,
+            data: "node1"
+          }, 
+          {
+            id: 2,
+            data: "node2"
+          }, 
+          {
+            id: 3,
+            data: "node3"
+          }, 
+          {
+            id: 4,
+            data: "node4"
+          }
+      ]
+    3. POST /graph
+      a. payload example: {
+        id: 1
+        data: "node1"
+        neighbors: [
+          {
+            id: 2
+            data: "node2"
+            neighbors: []
+          },
+          {
+            id: 3
+            data: "node3"
+            neighbors: []
+          },
+          {
+            id: 4
+            data: "node4"
+            neighbors: [
+              {
+                id: 5
+                data: "node5"
+                neighbors: []
+              }
+            ]
+          }
+        ]
+      }
+
+  b. Your backend should have a "database", because this is just a local project, you will just use JSON files
+  I will create a template for you, but you need to create the functions that will modify this file using the python function using the python open function and the json reading utility (import json I think)
+
+  ex. open function
+
+  with open("file.txt", "w") as f: 
+    f.write("suck my cock")
+    f.close()
+
+
+  Part 2:
+
+  1. When you click on a node it should change color to show that it is highlighted 
+  2. When you click away it should go back, only one node should be able to be selected at a time
+  3. You should have two buttons, a "+" button and a trashcan button. The trashcan button should be gray when 
+  no node is selected, and turn red when it is selected. When you click the trashcan, you should send a request to the backend telling you to remove the node. This should look something like 
+    a. DELETE /tree/1
+  4. When you click the plus button, a new node should be created off of the selected node.
+  5. When you double click on a node, you should be able to type into it which will change the data value, this new data should be saved to your database via an api
+    b. PUT /tree/1, payload: {data: "newTextHere"} 
+  it is your choice how you want to save this, you can either do it every few seconds, or every time the user clicks off, or another solution if you come up with one (save button for instance)
+
+  6. Whenever a new node is created, make sure that the line between that node and the selected one is also created in the interface, and in the backend too (they should be neighbors) 
+
+  7. Newly created nodes should follow the rules of their respective data structures (if I try to create a third node in a binary tree structure, it should not allow it, the plus button should be gray)
+  If I try to create another node in a graph when the max number of connections (maybe 8) has been reached,
+  don't allow it. When you add a connection to a linked list, it should add it to the right of the current node, not always at the end
+
+
+
+
