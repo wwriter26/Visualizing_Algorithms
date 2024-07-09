@@ -1,0 +1,30 @@
+/* src/components/Tree/Tree.css */
+.tree-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.tree {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.branch {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+  margin-top: 20px;
+}
+
+.node {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #4CAF50;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+  font-weight: bold;
+}
